@@ -1,0 +1,75 @@
+Sustav za automatsku detekciju opasnih prometnih situacija iz videozapisa pomoću dubokog učenja - Tema broj 9
+
+1. Upoznavanje s problemom detekcije opasnih prometnih situacija. Pregled relevantne literature (3D CNN, 2D CNN + LSTM, video-event detection) i analiza 
+arhitektura koje će se implementirati. 4 tjedna
+2. Analiza dostupnih prometnih video datasetova s anotiranim opasnim situacijama. Preuzimanje, organizacija i proučavanje strukture oznaka. 3 tjedna
+3. Priprema podatkovnog pipelinea: segmentacija videa na klipove, ekstrakcija frameova, normalizacija i augmentacija (svjetlo, kiša, magla, blur). 3 tjedna
+4. Implementacija prvog modela na bazi 3D CNN (npr. I3D, C3D ili R(2+1)D). Treniranje modela i inicijalna evaluacija. 5 tjedana
+5. Implementacija drugog modela temeljenog na 2D CNN + LSTM arhitekturi. Treniranje, usporedba performansi s prvim modelom. 4 tjedna
+6. Evaluacija modela korištenjem standardnih metrika (Precision, Recall, F1, Confusion Matrix). Analiza ponašanja modela na klasama: naglo kočenje, 
+near-collision, ulazak pješaka u kolnik. 3 tjedna
+7. Optimizacija najboljeg modela (fine-tuning, balansiranje klasa, poboljšanje vremenskih prozora). Testiranje robusnosti na realnim i zahtjevnim video 
+uvjetima. 3 tjedna
+8. Izrada prototip aplikacije (backend + UI) za učitavanje videozapisa i automatsko označavanje opasnih događaja. 2 tjedna
+9. Pisanje diplomskog rada 3 tjedna
+
+Automatic Detection of Hazardous Traffic Situations in Video Using Deep Learning
+U ovom je radu potrebno razviti sustav za automatsku detekciju opasnih prometnih situacija iz videozapisa primjenom metoda dubokog učenja. Potrebno je 
+omogućiti prepoznavanje događaja poput naglog kočenja, blizine sudara i iznenadnog ulaska pješaka u kolnik. Za obradu video podataka je potrebno primijeniti 
+3D konvolucijske mreže te kombinacije 2D CNN i LSTM arhitektura. Sustav je potrebno trenirati i testirati na javno dostupnim prometnim datasetovima koji 
+sadrže anotirane primjere rizičnih situacija. Nakon treniranja, modele je potrebno evaluirati korištenjem standardnih metrika klasifikacije te implementirati prototip aplikacije koja omogućuje učitavanje 
+videozapisa i automatsko označavanje detektiranih opasnih događaja. Na taj se način demonstrira mogućnost primjene dubokog učenja u analizi i detekciji 
+kritičnih situacija u prometnim sustavima.
+
+PITANJA:
+Koliko je bitno upoznati se sa arhitekturom?
+Veličina dataseta?
+Videi raznih nesreća (CADP -rampa udara ljude, čovjek baca kantu na parkirani automobil) 
+
+Neki MOŽDA korisni linkovi:
+3D CNN
+I3D models trained on Kinetics: https://github.com/google-deepmind/kinetics-i3d/blob/master/README.md
+Recent Advances in Video Action Recognition with 3D Convolutions: https://www.jstage.jst.go.jp/article/transfun/E104.A/6/E104.A_2020IMP0012/_pdf/-char/en
+https://www.geeksforgeeks.org/deep-learning/convolutional-neural-network-cnn-in-machine-learning/
+https://www.geeksforgeeks.org/deep-learning/deep-learning-introduction-to-long-short-term-memory/
+https://www.geeksforgeeks.org/machine-learning/introduction-to-recurrent-neural-network/
+https://github.com/google-deepmind/kinetics-i3d/blob/master/README.md#i3d-models-trained-on-kinetics
+https://www.jstage.jst.go.jp/article/transfun/E104.A/6/E104.A_2020IMP0012/_pdf/-char/en
+https://serp.ai/posts/r%282%2B1%29d/
+https://elcvia.cvc.uab.cat/article/view/1631
+https://github.com/repo-bilalnaeem/Motion-Video-Detection
+https://www.mdpi.com/2079-9292/12/1/29
+https://arxiv.org/abs/2505.03991
+https://link.springer.com/article/10.1007/s11042-024-19116-9
+https://www.researchgate.net/profile/Sayantan-Roy-14/publication/381582039_A_comprehensive_Survey_on_Traffic_Anomaly_Detection_using_Deep_Learning/links/6675011ad21e220d89c51d26/A-comprehensive-Survey-on-Traffic-Anomaly-Detection-using-Deep-Learning.pdf
+https://arxiv.org/abs/2208.06461
+
+DATASET:
+Detection of Traffic Anomaly (DoTA): https://github.com/MoonBlvd/Detection-of-Traffic-Anomaly
+	Includes 4677 videos labeled across nine action categories with temporal, spatial, and categorical annotations
+CarCrashDataset (CCD):	https://drive.google.com/drive/folders/1Rx4LCo-9AbAdPw5Zh7wpKhMKLabZ5oA8
+			https://www.kaggle.com/datasets/asefjamilajwad/car-crash-dataset-ccd
+			https://github.com/Cogito2012/CarCrashDataset
+	1500 kratkih video isječaka manje rezolucije u kojima se događaju prometne nesreće i 3000 video isječaka bez nesreća, anotacija - videi nesreća 
+	razloženi na frameove koji su označeni sa 1 ako je zabilježena nesreća u njima te svaki video ima feature file koji sadrži bboxove
+CADP:			https://drive.google.com/drive/folders/1Y1h7apbfYd7nNWuKZVPj7lov5YONC1aJ
+			https://drive.google.com/drive/folders/1ozfZbz8wRoNqKknC59IPXP_twKgmCOaA
+			https://ppms.cit.cmu.edu/media/project_files/CADP_IEEE_Camera_Ready_Final.pdf
+	The CADP dataset comprises 1416 CCTV-recorded accidents under various weather and lighting conditions. It uses 7000 frames (balanced between accident
+	 and non-accident scenes) for training and proposes a hybrid detection method using DETR and Random Forest classifiers for frame-level classification
+BDD100K:		https://bair.berkeley.edu/blog/2018/05/30/bdd/
+			http://bdd-data.berkeley.edu/download.html
+AI City:		https://www.kaggle.com/datasets/nhnnguynngc/ai-city-challenge-track2-p1?resource=download
+	dataset bez anotacija
+TU-DAT:			https://www.mdpi.com/1424-8220/25/11/3259
+			https://www.mdpi.com/1424-8220/25/11/3259#Methods
+TU-DAT is sourced from a variety of channels, including surveillance camera footage, publicly available accident videos on YouTube, and crash scenarios generated synthetically using a high-fidelity game simulation environment.
+The dataset includes detailed metadata such as vehicle trajectories, collision points, impact severity levels, road types, and weather conditions.
+Preuzet Raw videos dataset, nedostaju anotacije
+
+QMUL Junction Dataset: 	https://personal.ie.cuhk.edu.hk/~ccloy/downloads_qmul_junction.html
+A busy traffic dataset for research on activity analysis and behaviour understanding. Video length: 1 hour (90000 frames) Frame size: 360x288 Frame rate: 25 Hz
+IEEE:NEED SUBSCRIPTION!! https://ieee-dataport.org/documents/traffic-accident-detection-video-dataset-ai-driven-computer-vision-systems-smart-city
+
+Detaljnije napraviti analizu datasteova i anotacija, različitih klasa
+
